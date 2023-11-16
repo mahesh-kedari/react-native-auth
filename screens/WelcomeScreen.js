@@ -1,11 +1,11 @@
-import axios from 'axios';
-import { useContext, useEffect, useState } from 'react';
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
 
-import { StyleSheet, Text, View } from 'react-native';
-import { AuthContext } from '../store/auth-context';
+import { StyleSheet, Text, View } from "react-native";
+import { AuthContext } from "../store/auth-context";
 
 function WelcomeScreen() {
-  const [fetchedMessage, setFetchedMesssage] = useState('');
+  const [fetchedMessage, setFetchedMesssage] = useState("");
 
   const authCtx = useContext(AuthContext);
   const token = authCtx.token;
@@ -13,10 +13,12 @@ function WelcomeScreen() {
   useEffect(() => {
     axios
       .get(
-        'https://react-native-course-3cceb-default-rtdb.firebaseio.com/message.json?auth=' +
+        "https://rn-expense-manager-46329-default-rtdb.asia-southeast1.firebasedatabase.app?auth=" +
           token
       )
       .then((response) => {
+        console.log(response);
+        debugger;
         setFetchedMesssage(response.data);
       });
   }, [token]);
@@ -35,13 +37,13 @@ export default WelcomeScreen;
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 32,
   },
   title: {
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 8,
   },
 });
